@@ -34,7 +34,7 @@ description: |
 
 1. **Clonez ce repository** :
     ```bash
-    git clone https://github.com/stranxik/n8n-coolify.git
+    git clone https://github.com/stranxik/n8n-coolify-public.git
     cd n8n-coolify
     ```
 
