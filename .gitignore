@@ -1,1 +1,5 @@
+# Ignorer le fichier `.env` qui contient des informations sensibles (clés API, configurations, etc.).
+# Ne jamais versionner ce fichier. 
+# Lors du déploiement avec Coolify, copiez le contenu de `.env.example` dans les variables d'environnement sous "Environment Variables" et ajustez les valeurs (domaines, sous-domaines, etc.) selon votre serveur.
+# Ce fichier `.env` doit être localement présent sur votre serveur ou dans Coolify pour garantir une configuration correcte.
 .env

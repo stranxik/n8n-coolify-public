@@ -7,6 +7,8 @@ services:
     volumes:
       - caddy_data:/data
       - ${DATA_FOLDER}/caddy_config:/config
+    # Ne touchez pas à cette section sauf si vous avez des besoins spécifiques.
+    # Caddy gère automatiquement la configuration SSL et la redirection HTTPS.
 
   n8n:
     image: docker.n8n.io/n8nio/n8n
@@ -21,7 +23,9 @@ services:
     volumes:
       - n8n_data:/home/node/.n8n
       - ${DATA_FOLDER}/local_files:/files
-      
+    # Cette configuration ne doit pas être modifiée si vous suivez les instructions de base.
+    # Les variables d'environnement sont gérées par le fichier `.env` et Coolify.
+
 volumes:
   caddy_data:
     external: true
