@@ -1,7 +1,7 @@
 # n8n-coolify
 
 description: |
-  Cette version non officielle de n8n permet de télécharger et d'installer la dernière image Docker de n8n en utilisant Docker Compose. Cette configuration est spécialement conçue pour les utilisateurs de **Coolify** ou ceux utilisant un reverse proxy comme **Caddy**, **Traefik**, ou **Nginx**, permettant une gestion automatique des ports et de la sécurité SSL.
+  Cette version non officielle de n8n permet de télécharger et d'installer la dernière image Docker de n8n en utilisant Docker Compose. Cette configuration est spécialement conçue pour les utilisateurs de **Coolify** ou ceux utilisant le reverse proxy  **Caddy**, permettant une gestion automatique des ports et de la sécurité SSL.
 
   Depuis la version **beta.237**, Coolify ajouté la prise en charge de **Caddy** et **Traefik** comme reverse proxies. Vous pouvez basculer entre eux à tout moment selon vos préférences.
 
@@ -67,8 +67,6 @@ description: |
 
 - **Caddyfile** : Vous n'avez pas besoin de configurer Caddy manuellement dans la plupart des cas. **Caddy** gère automatiquement la sécurité SSL. Si vous souhaitez personnaliser des aspects comme les domaines ou les redirections, vous pouvez ajuster le fichier `Caddyfile` dans le dossier `caddy_config`.
 
-  **Note importante** : Par défaut, cette configuration utilise le port interne **5678** dans le fichier `Caddyfile` et dans `docker-compose.yml`. Si vous souhaitez changer de port, vous devez modifier ces deux fichiers, mais ne touchez pas aux autres configurations. Assurez-vous que le port est bien mis à jour à ces deux endroits.
-
 ---
 
 ## Correction des permissions de fichier
@@ -89,13 +87,13 @@ description: |
 
 ## Problèmes connus
 
-- Si vous obtenez une erreur de port déjà attribué lors du démarrage de n8n, il est probable que le port 5678 soit déjà utilisé sur votre machine. Cependant, étant donné que **Caddy** ou **Traefik** gère automatiquement les redirections de ports, ce genre de problème ne devrait pas affecter le déploiement.
+- **Note importante** : Par défaut, cette configuration utilise le port interne **5678** dans le fichier `Caddyfile` et dans `docker-compose.yml`. Si vous obtenez une erreur de port déjà attribué lors du démarrage de n8n, il est probable que le port 5678 soit déjà utilisé sur votre machine. Si vous souhaitez changer de port, vous devez modifier ces deux fichiers, mais ne touchez pas aux autres configurations. Assurez-vous que le port est bien mis à jour à ces deux endroits.
 
 ---
 
 ## Résumé
 
-Cette configuration simplifie l'auto-hébergement de n8n, particulièrement pour les utilisateurs de **Coolify** ou ceux utilisant un reverse proxy comme **Caddy**, **Traefik**, ou **Nginx**. Il vous suffit de modifier quelques variables d'environnement, de copier le fichier `.env.example` en `.env`, et d'exécuter `docker-compose up`. Cela permet de lancer facilement n8n avec une gestion automatique des ports et une configuration SSL sécurisée.
+Cette configuration simplifie l'auto-hébergement de n8n, particulièrement pour les utilisateurs de **Coolify** ou ceux utilisant le reverse proxy  **Caddy**. Il vous suffit de modifier quelques variables d'environnement, de copier le fichier `.env.example` en `.env`, et d'exécuter `docker-compose up`. Cela permet de lancer facilement n8n avec une gestion automatique des ports, la dernière image de n8n et une configuration SSL sécurisée.
 
 ---
 
