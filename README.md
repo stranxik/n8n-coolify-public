@@ -3,7 +3,7 @@
 description: |
   Cette version non officielle de n8n permet de télécharger et d'installer la dernière image Docker de n8n en utilisant Docker Compose. Cette configuration est spécialement conçue pour les utilisateurs de **Coolify** ou ceux utilisant le reverse proxy  **Caddy**, permettant une gestion automatique des ports et de la sécurité SSL.
 
-  Depuis la version **beta.237**, Coolify ajouté la prise en charge de **Caddy** et **Traefik** comme reverse proxies. Vous pouvez basculer entre eux à tout moment selon vos préférences.
+  Depuis la version **beta.237**, Coolify a ajouté la prise en charge de **Caddy** et **Traefik** comme reverse proxies. Vous pouvez basculer entre eux à tout moment selon vos préférences.
 
   Avant de changer de proxy et si vous avez une application qui a été créée avant la version **beta.237**, il est important de vérifier les points suivants :
   Si vous n'avez pas les libellés `caddy_*` ou `traefik_*` :
@@ -29,8 +29,62 @@ description: |
   **Note** : Cette solution est destinée aux utilisateurs avancés. Si vous n'êtes pas à l'aise avec ces technologies, il est recommandé d'utiliser la version **n8n Cloud**.
 
 ---
+# Étapes d'installation pour déployer une application depuis un repository public avec Coolify
 
-## Étapes d'installation
+instructions:
+  - step: "1. Accédez à votre instance Coolify"
+    description: "Connectez-vous à l’interface de Coolify via votre navigateur (exemple : http://your-coolify-instance.com)."
+
+  - step: "2. Ajoutez une nouvelle application"
+    actions:
+      - "Cliquez sur 'Applications' dans le menu principal."
+      - "Cliquez sur 'Create Application' pour ajouter une nouvelle application."
+
+  - step: "3. Configurez l'application"
+    actions:
+      - "Choisissez le type d'application : Sélectionnez 'Git Repository' comme source pour le déploiement."
+      - "Configurez le dépôt Git :"
+        details:
+          repository_url: "https://github.com/stranxik/n8n-coolify-public.git"
+          branch: "main (ou modifiez selon vos besoins)"
+      - "Spécifiez le chemin Docker Compose :"
+        details:
+          docker_compose_path: "docker-compose.yml"
+      - "Ajoutez les variables d'environnement :"
+        variables:
+          - "DOMAIN_NAME : example.com"
+          - "SUBDOMAIN : n8n.example.com"
+          - "GENERIC_TIMEZONE : Europe/Paris"
+          - "DATABASE_TYPE : postgres"
+          - "N8N_BASIC_AUTH_ACTIVE : true"
+
+  - step: "4. Configurez le reverse proxy Caddy"
+    actions:
+      - "Activer le proxy pour cette application :"
+        details:
+          enable_proxy: true
+          subdomain: "n8n.example.com"
+      - "Configurer un certificat SSL :"
+        details:
+          auto_ssl: true
+
+  - step: "5. Déployez l’application"
+    actions:
+      - "Cliquez sur 'Deploy' pour lancer le déploiement."
+      - "Coolify récupérera automatiquement le repository, générera les conteneurs Docker, et configurera le reverse proxy."
+
+  - step: "6. Accédez à votre application"
+    description: "Une fois le déploiement terminé, vous pourrez accéder à votre application en visitant l’URL configurée."
+    url_example: "https://n8n.example.com"
+
+summary:
+  - "Simplification du déploiement : Coolify gère l’ensemble du processus, de la récupération du repository à la configuration du proxy."
+  - "Configuration centralisée : Les variables d’environnement et les configurations sont toutes gérées via l’interface de Coolify."
+  - "Gestion automatisée des certificats : Caddy s’occupe de générer et renouveler les certificats SSL."
+
+---
+
+## Étapes d'installation sur serveur avec reverse proxy Caddy
 
 1. **Clonez ce repository** :
     ```bash
