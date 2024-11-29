@@ -110,7 +110,6 @@ summary:
     ```bash
     docker-compose up -d
     ```
-
 ---
 
 ## Fonctionnement
